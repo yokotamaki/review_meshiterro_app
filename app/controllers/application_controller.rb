@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  #バリデーション
+  before_action :authenticate_user!,except: [:top]
+  
   # signup時、nameのデータ操作を許可するアクションメソッドが指定されている
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -11,4 +14,5 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     post_images_path
   end
+  
 end
